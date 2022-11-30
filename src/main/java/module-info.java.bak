@@ -1,0 +1,14 @@
+module com.tugalsan.api.tomcat.embedded {
+    requires gwt.user;
+    requires jakarta.annotation;
+    requires jakarta.el;
+    requires jakarta.servlet;
+    requires jakarta.servlet.jsp;
+    requires org.apache.tomcat.embed.core;
+    requires com.tugalsan.api.log;
+    requires com.tugalsan.api.time;
+    requires com.tugalsan.api.thread;
+    requires com.tugalsan.api.executable;
+    requires com.tugalsan.api.unsafe;
+    exports com.tugalsan.api.tomcat.embedded.server;
+}
