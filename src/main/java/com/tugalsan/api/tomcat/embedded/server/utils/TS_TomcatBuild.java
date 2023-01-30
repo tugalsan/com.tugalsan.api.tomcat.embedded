@@ -38,7 +38,7 @@ public class TS_TomcatBuild {
                 "/"
         ));
         context.setResources(resources);
-        //TODO DATABASE
+        //TODO DATABASE implementation for embedded tomcat not done
         {
 //        ContextResource resource = buildResource(
 //            H2_DATA_SOURCE_NAME,
