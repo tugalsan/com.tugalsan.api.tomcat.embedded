@@ -39,7 +39,7 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>10.1.1</version><!--10.1.2 java.lang.ClassNotFoundException: org.apache.tomcat.jakarta ee.EE Spec Profile -->
+            <version>10.1.1</version><!-- TODO 10.1.2 java.lang.ClassNotFoundException: org.apache.tomcat.jakarta ee.EE Spec Profile -->
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
