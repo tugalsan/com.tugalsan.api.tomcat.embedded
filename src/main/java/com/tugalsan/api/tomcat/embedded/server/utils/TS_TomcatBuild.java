@@ -80,7 +80,7 @@ public class TS_TomcatBuild {
     }
 
     public static void startAndLock(TS_TomcatBall tomcatBall, TS_TomcatConnector... connectors) {
-        TGS_UnSafe.execute(() -> {
+        TGS_UnSafe.run(() -> {
             tomcatBall.connectors().addAll(List.of(connectors));
             tomcatBall.tomcat().start();
             Arrays.asList(connectors)

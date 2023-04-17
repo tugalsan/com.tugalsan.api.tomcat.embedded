@@ -61,6 +61,6 @@ public class TS_TomcatConnector {
     }
 
     public void destroy() {
-        TGS_UnSafe.execute(() -> connector.destroy(), e -> d.ct("destroy", e));
+        TGS_UnSafe.run(() -> connector.destroy(), e -> d.ct("destroy", e));
     }
 }

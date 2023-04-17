@@ -5,7 +5,7 @@ import java.nio.file.*;
 import java.time.*;
 import org.apache.catalina.*;
 import org.apache.catalina.startup.*;
-import com.tugalsan.api.executable.client.*;
+import com.tugalsan.api.runnable.client.*;
 import com.tugalsan.api.log.server.*;
 import com.tugalsan.api.unsafe.client.*;
 import com.tugalsan.api.thread.server.*;
@@ -25,12 +25,12 @@ public record TS_TomcatBall(
 
     final private static TS_Log d = TS_Log.of(TS_TomcatBall.class);
 
-    public static TS_TomcatBall of(CharSequence contextName_as_empty_or_slashName, TGS_ExecutableType1<List<TS_ServletAbstract>> servlets, TGS_ExecutableType1<List<TS_TomcatConnector>> connectors) {
+    public static TS_TomcatBall of(CharSequence contextName_as_empty_or_slashName, TGS_RunnableType1<List<TS_ServletAbstract>> servlets, TGS_RunnableType1<List<TS_TomcatConnector>> connectors) {
         var tomcatBall = TS_TomcatBuild.init(contextName_as_empty_or_slashName);
         List<TS_ServletAbstract> servletList = new ArrayList();
         List<TS_TomcatConnector> connectorList = new ArrayList();
-        servlets.execute(servletList);
-        connectors.execute(connectorList);
+        servlets.run(servletList);
+        connectors.run(connectorList);
         TS_TomcatBuild.map(tomcatBall, servletList);
         TS_TomcatBuild.map(tomcatBall, new TS_ServletDestroyByMapping(tomcatBall));
         TS_TomcatBuild.startAndLock(tomcatBall, connectorList);
@@ -52,7 +52,7 @@ public record TS_TomcatBall(
         if (sequencial) {//SEQUENCIAL WAY
             connectors().forEach(connector -> connector.destroy());
             TS_ThreadWait.of(Duration.ofSeconds(maxSecondsForConnectors));//TEST FOR SEQUENCIAL WAY
-            TGS_UnSafe.execute(() -> context().destroy(), e -> d.ct("context.destroy", e));
+            TGS_UnSafe.run(() -> context().destroy(), e -> d.ct("context.destroy", e));
             TS_ThreadWait.of(Duration.ofSeconds(maxSecondsForTomcat));//TEST FOR SEQUENCIAL WAY
         } else {
 //            {//DESTROR ALL CONNECTORS
@@ -88,9 +88,9 @@ public record TS_TomcatBall(
 //            }
         }
         {//FINNAL SEALING
-            TGS_UnSafe.execute(() -> tomcat.stop(), e -> d.ct("tomcat.stop", e));
+            TGS_UnSafe.run(() -> tomcat.stop(), e -> d.ct("tomcat.stop", e));
             TS_ThreadWait.of(Duration.ofSeconds(maxSecondsForTomcat));//TEST FOR SEQUENCIAL WAY
-            TGS_UnSafe.execute(() -> tomcat.destroy(), e -> d.ct("tomcat.destroy", e));
+            TGS_UnSafe.run(() -> tomcat.destroy(), e -> d.ct("tomcat.destroy", e));
         }
     }
 
