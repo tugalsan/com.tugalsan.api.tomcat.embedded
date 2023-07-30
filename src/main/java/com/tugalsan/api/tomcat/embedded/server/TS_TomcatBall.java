@@ -7,8 +7,8 @@ import org.apache.catalina.*;
 import org.apache.catalina.startup.*;
 import com.tugalsan.api.runnable.client.*;
 import com.tugalsan.api.log.server.*;
+import com.tugalsan.api.thread.server.TS_ThreadWait;
 import com.tugalsan.api.unsafe.client.*;
-import com.tugalsan.api.thread.server.*;
 import com.tugalsan.api.tomcat.embedded.server.servlets.*;
 import com.tugalsan.api.tomcat.embedded.server.utils.*;
 
@@ -61,7 +61,7 @@ public record TS_TomcatBall(
 //                    connector.destroy();
 //                    return true;
 //                }));
-//                var all = TS_ThreadRunAll.of(Duration.ofSeconds(maxSecondsForConnectors), destroyConnectors);
+//                var all = TS_ThreadAsyncAll.of(Duration.ofSeconds(maxSecondsForConnectors), destroyConnectors);
 //                if (all.hasError()) {
 //                    System.out.println("ERROR ON DESTROY CONNECTORS:");
 //                    all.exceptions.forEach(e -> {
@@ -76,7 +76,7 @@ public record TS_TomcatBall(
 //                    context().destroy();
 //                    return true;
 //                };
-//                var all = TS_ThreadRunAll.of(Duration.ofSeconds(maxSecondsForTomcat), destroyTomcat);
+//                var all = TS_ThreadAsyncAll.of(Duration.ofSeconds(maxSecondsForTomcat), destroyTomcat);
 //                if (all.hasError()) {
 //                    System.out.println("ERROR ON DESTROY TOMCAT:");
 //                    all.exceptions.forEach(e -> {
