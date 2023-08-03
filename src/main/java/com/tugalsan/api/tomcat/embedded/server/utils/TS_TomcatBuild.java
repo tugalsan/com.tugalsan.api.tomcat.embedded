@@ -1,5 +1,6 @@
 package com.tugalsan.api.tomcat.embedded.server.utils;
 
+import com.tugalsan.api.thread.server.TS_ThreadKillTrigger;
 import java.util.*;
 import org.apache.catalina.core.*;
 import org.apache.catalina.startup.*;
@@ -9,7 +10,7 @@ import com.tugalsan.api.tomcat.embedded.server.*;
 
 public class TS_TomcatBuild {
 
-    public static TS_TomcatBall init(CharSequence contextName_as_empty_or_slashName) {
+    public static TS_TomcatBall init(TS_ThreadKillTrigger killTrigger, CharSequence contextName_as_empty_or_slashName) {
         //ref folders
         var project = TS_TomcatPath.project();
         var project_src_main_webapp = TS_TomcatPath.project_src_main_webapp();
@@ -48,7 +49,7 @@ public class TS_TomcatBuild {
 //        context.getNamingResources().addResource(resource);
 //        context.getServletContext().addListener(DataBaseSchemaInit.class);
         }
-        var tomcatBall = new TS_TomcatBall(
+        var tomcatBall = new TS_TomcatBall(killTrigger,
                 project, project_src_main_webapp, project_target_classes,
                 tomcat, context, contextName_as_empty_or_slashName, resources,
                 new ArrayList(), new ArrayList()
