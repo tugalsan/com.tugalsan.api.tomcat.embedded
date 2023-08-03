@@ -1,6 +1,6 @@
 package com.tugalsan.api.tomcat.embedded.server.utils;
 
-import com.tugalsan.api.thread.server.safe.TS_ThreadSafeTrigger;
+import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
 import java.util.*;
 import org.apache.catalina.core.*;
 import org.apache.catalina.startup.*;
@@ -10,7 +10,7 @@ import com.tugalsan.api.tomcat.embedded.server.*;
 
 public class TS_TomcatBuild {
 
-    public static TS_TomcatBall init(TS_ThreadSafeTrigger killTrigger, CharSequence contextName_as_empty_or_slashName) {
+    public static TS_TomcatBall init(TS_ThreadSyncTrigger killTrigger, CharSequence contextName_as_empty_or_slashName) {
         //ref folders
         var project = TS_TomcatPath.project();
         var project_src_main_webapp = TS_TomcatPath.project_src_main_webapp();
