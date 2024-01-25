@@ -4,12 +4,11 @@ import com.tugalsan.api.tomcat.embedded.server.TS_ServletAbstract;
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-import com.tugalsan.api.log.server.*;
 import com.tugalsan.api.tomcat.embedded.server.*;
 
 public class TS_ServletDestroyByMapping extends TS_ServletAbstract {
 
-    final private static TS_Log d = TS_Log.of(TS_ServletDestroyByMapping.class);
+//    final private static TS_Log d = TS_Log.of(TS_ServletDestroyByMapping.class);
 
     public TS_ServletDestroyByMapping(TS_TomcatBall tomcatBall) {
         this.tomcatBall = tomcatBall;
