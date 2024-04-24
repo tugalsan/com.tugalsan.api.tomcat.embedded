@@ -1,6 +1,6 @@
 package com.tugalsan.api.tomcat.embedded.server.utils;
 
-import com.tugalsan.api.charset.client.TGS_CharSetCast;
+import com.tugalsan.api.charset.client.TGS_CharSet;
 import com.tugalsan.api.log.server.TS_Log;
 import java.nio.file.*;
 import org.apache.catalina.connector.*;
@@ -11,7 +11,7 @@ public class TS_TomcatConnector {
     final private static TS_Log d = TS_Log.of(TS_TomcatConnector.class);
 
     private String type(Path keystorePath) {
-        var fn = TGS_CharSetCast.toLocaleLowerCase(keystorePath.getFileName().toString());
+        var fn = TGS_CharSet.cmn().languageDefault().toLowerCase(keystorePath.getFileName().toString());
         if (fn.endsWith(".p12")) {
             return "PKCS12";
         } else if (fn.endsWith(".jks")) {
