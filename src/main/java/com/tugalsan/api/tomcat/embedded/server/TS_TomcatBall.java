@@ -1,10 +1,11 @@
 package com.tugalsan.api.tomcat.embedded.server;
 
+import com.tugalsan.api.callable.client.TGS_CallableType1Void;
 import java.util.*;
 import java.nio.file.*;
 import org.apache.catalina.*;
 import org.apache.catalina.startup.*;
-import com.tugalsan.api.runnable.client.*;
+
 import com.tugalsan.api.log.server.*;
 import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
 import com.tugalsan.api.thread.server.TS_ThreadWait;
@@ -26,7 +27,7 @@ public record TS_TomcatBall(
 
     final private static TS_Log d = TS_Log.of(TS_TomcatBall.class);
 
-    public static TS_TomcatBall of(TS_ThreadSyncTrigger killTrigger, CharSequence contextName_as_empty_or_slashName, TGS_RunnableType1<List<TS_ServletAbstract>> servlets, TGS_RunnableType1<List<TS_TomcatConnector>> connectors) {
+    public static TS_TomcatBall of(TS_ThreadSyncTrigger killTrigger, CharSequence contextName_as_empty_or_slashName, TGS_CallableType1Void<List<TS_ServletAbstract>> servlets, TGS_CallableType1Void<List<TS_TomcatConnector>> connectors) {
         var tomcatBall = TS_TomcatBuild.init(killTrigger, contextName_as_empty_or_slashName);
         List<TS_ServletAbstract> servletList = new ArrayList();
         List<TS_TomcatConnector> connectorList = new ArrayList();
