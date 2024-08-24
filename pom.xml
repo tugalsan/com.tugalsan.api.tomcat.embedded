@@ -39,27 +39,27 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>10.1.18</version><!-- TODO 10.1.2 java.lang.ClassNotFoundException: org.apache.tomcat.jakarta ee.EE Spec Profile -->
+            <version>11.0.0-M24</version><!-- 10.1.18 WOKS. TODO 10.1.2 java.lang.ClassNotFoundException: org.apache.tomcat.jakarta ee.EE Spec Profile -->
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-            <version>10.1.18</version>
+            <version>11.0.0-M24</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper</artifactId>
-            <version>10.1.18</version>
+            <version>11.0.0-M24</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper-el</artifactId>
-            <version>10.1.18</version>
+            <version>11.0.0-M24</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jsp-api</artifactId>
-            <version>10.1.18</version>
+            <version>11.0.0-M24</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -125,7 +125,7 @@
                 <version>3.13.0</version>
                 <configuration>
                     <release>22</release>
-                     <!--  <enablePreview>true</enablePreview>
+                    <!--  <enablePreview>true</enablePreview>
                     <compilerArgs>
                        <arg>- -add-modules</arg>
                         <arg>jdk.incubator.vector</arg>
