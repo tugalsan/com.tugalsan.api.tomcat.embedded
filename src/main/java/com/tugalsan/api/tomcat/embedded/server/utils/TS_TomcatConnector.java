@@ -1,11 +1,11 @@
 package com.tugalsan.api.tomcat.embedded.server.utils;
 
-import com.tugalsan.api.charset.client.TGS_CharSet;
 import com.tugalsan.api.charset.client.TGS_CharSetCast;
+import com.tugalsan.api.function.client.maythrow.checkedexceptions.TGS_FuncMTCEUtils;
 import com.tugalsan.api.log.server.TS_Log;
 import java.nio.file.*;
 import org.apache.catalina.connector.*;
-import com.tugalsan.api.unsafe.client.*;
+
 
 public class TS_TomcatConnector {
 
@@ -62,6 +62,6 @@ public class TS_TomcatConnector {
     }
 
     public void destroy() {
-        TGS_UnSafe.run(() -> connector.destroy(), e -> d.ct("destroy", e));
+        TGS_FuncMTCEUtils.run(() -> connector.destroy(), e -> d.ct("destroy", e));
     }
 }

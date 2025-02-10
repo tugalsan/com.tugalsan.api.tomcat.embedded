@@ -1,6 +1,7 @@
 package com.tugalsan.api.tomcat.embedded.server;
 
-import com.tugalsan.api.function.client.TGS_Func_In1;
+import com.tugalsan.api.function.client.maythrow.checkedexceptions.TGS_FuncMTCEUtils;
+import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCE_In1;
 import java.util.*;
 import java.nio.file.*;
 import org.apache.catalina.*;
@@ -8,8 +9,8 @@ import org.apache.catalina.startup.*;
 
 import com.tugalsan.api.log.server.*;
 import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
-import com.tugalsan.api.thread.server.TS_ThreadWait;
-import com.tugalsan.api.unsafe.client.*;
+import com.tugalsan.api.thread.server.sync.TS_ThreadSyncWait;
+
 import com.tugalsan.api.tomcat.embedded.server.servlets.*;
 import com.tugalsan.api.tomcat.embedded.server.utils.*;
 
@@ -27,7 +28,7 @@ public record TS_TomcatBall(
 
     final private static TS_Log d = TS_Log.of(TS_TomcatBall.class);
 
-    public static TS_TomcatBall of(TS_ThreadSyncTrigger killTrigger, CharSequence contextName_as_empty_or_slashName, TGS_Func_In1<List<TS_ServletAbstract>> servlets, TGS_Func_In1<List<TS_TomcatConnector>> connectors) {
+    public static TS_TomcatBall of(TS_ThreadSyncTrigger killTrigger, CharSequence contextName_as_empty_or_slashName, TGS_FuncMTUCE_In1<List<TS_ServletAbstract>> servlets, TGS_FuncMTUCE_In1<List<TS_TomcatConnector>> connectors) {
         var tomcatBall = TS_TomcatBuild.init(killTrigger, contextName_as_empty_or_slashName);
         List<TS_ServletAbstract> servletList = new ArrayList();
         List<TS_TomcatConnector> connectorList = new ArrayList();
@@ -53,9 +54,9 @@ public record TS_TomcatBall(
         var sequencial = true;
         if (sequencial) {//SEQUENCIAL WAY
             connectors().forEach(connector -> connector.destroy());
-            TS_ThreadWait.seconds(TS_TomcatBall.class.getSimpleName(), killTrigger(), maxSecondsForConnectors);//TEST FOR SEQUENCIAL WAY
-            TGS_UnSafe.run(() -> context().destroy(), e -> d.ct("context.destroy", e));
-            TS_ThreadWait.seconds(TS_TomcatBall.class.getSimpleName(), killTrigger(), maxSecondsForTomcat);//TEST FOR SEQUENCIAL WAY
+            TS_ThreadSyncWait.seconds(TS_TomcatBall.class.getSimpleName(), killTrigger(), maxSecondsForConnectors);//TEST FOR SEQUENCIAL WAY
+            TGS_FuncMTCEUtils.run(() -> context().destroy(), e -> d.ct("context.destroy", e));
+            TS_ThreadSyncWait.seconds(TS_TomcatBall.class.getSimpleName(), killTrigger(), maxSecondsForTomcat);//TEST FOR SEQUENCIAL WAY
         } else {
 //            {//DESTROR ALL CONNECTORS
 //                List<Callable<Boolean>> destroyConnectors = new ArrayList();
@@ -90,9 +91,9 @@ public record TS_TomcatBall(
 //            }
         }
         {//FINNAL SEALING
-            TGS_UnSafe.run(() -> tomcat.stop(), e -> d.ct("tomcat.stop", e));
-            TS_ThreadWait.seconds(TS_TomcatBall.class.getSimpleName(), killTrigger(), maxSecondsForTomcat);//TEST FOR SEQUENCIAL WAY
-            TGS_UnSafe.run(() -> tomcat.destroy(), e -> d.ct("tomcat.destroy", e));
+            TGS_FuncMTCEUtils.run(() -> tomcat.stop(), e -> d.ct("tomcat.stop", e));
+            TS_ThreadSyncWait.seconds(TS_TomcatBall.class.getSimpleName(), killTrigger(), maxSecondsForTomcat);//TEST FOR SEQUENCIAL WAY
+            TGS_FuncMTCEUtils.run(() -> tomcat.destroy(), e -> d.ct("tomcat.destroy", e));
         }
     }
 
