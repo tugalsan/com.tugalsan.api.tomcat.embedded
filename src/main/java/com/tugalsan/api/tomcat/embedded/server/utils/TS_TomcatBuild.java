@@ -1,6 +1,6 @@
 package com.tugalsan.api.tomcat.embedded.server.utils;
 
-import com.tugalsan.api.function.client.maythrow.checkedexceptions.TGS_FuncMTCEUtils;
+import com.tugalsan.api.function.client.maythrowexceptions.checked.TGS_FuncMTCUtils;
 import com.tugalsan.api.thread.server.sync.TS_ThreadSyncTrigger;
 import java.util.*;
 import org.apache.catalina.core.*;
@@ -81,7 +81,7 @@ public class TS_TomcatBuild {
     }
 
     public static void startAndLock(TS_TomcatBall tomcatBall, TS_TomcatConnector... connectors) {
-        TGS_FuncMTCEUtils.run(() -> {
+        TGS_FuncMTCUtils.run(() -> {
             tomcatBall.connectors().addAll(List.of(connectors));
             tomcatBall.tomcat().start();
             Arrays.asList(connectors)
