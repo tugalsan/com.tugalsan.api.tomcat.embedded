@@ -48,27 +48,27 @@
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
-            <version>11.0.8</version><!-- 10.1.18 WOKS. TODO 10.1.2 java.lang.ClassNotFoundException: org.apache.tomcat.jakarta ee.EE Spec Profile -->
+            <version>11.0.9</version><!-- 10.1.18 WOKS. TODO 10.1.2 java.lang.ClassNotFoundException: org.apache.tomcat.jakarta ee.EE Spec Profile -->
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-            <version>11.0.8</version>
+            <version>11.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper</artifactId>
-            <version>11.0.8</version>
+            <version>11.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jasper-el</artifactId>
-            <version>11.0.8</version>
+            <version>11.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jsp-api</artifactId>
-            <version>11.0.8</version>
+            <version>11.0.9</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
