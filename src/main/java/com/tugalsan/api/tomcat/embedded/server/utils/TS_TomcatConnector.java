@@ -6,7 +6,6 @@ import com.tugalsan.api.log.server.TS_Log;
 import java.nio.file.*;
 import org.apache.catalina.connector.*;
 
-
 public class TS_TomcatConnector {
 
     final private static TS_Log d = TS_Log.of(TS_TomcatConnector.class);
